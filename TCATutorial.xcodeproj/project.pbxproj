@@ -20,6 +20,7 @@
 		4237C4882C4FD3B1001A657C /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		4237C48A2C4FD3B3001A657C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4237C48D2C4FD3B3001A657C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4237C4972C4FE300001A657C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +54,7 @@
 		4237C4852C4FD3B1001A657C /* TCATutorial */ = {
 			isa = PBXGroup;
 			children = (
+				4237C4972C4FE300001A657C /* Info.plist */,
 				4237C4862C4FD3B1001A657C /* TCATutorialApp.swift */,
 				4237C4882C4FD3B1001A657C /* CounterView.swift */,
 				4237C48A2C4FD3B3001A657C /* Assets.xcassets */,
@@ -283,6 +285,7 @@
 				DEVELOPMENT_TEAM = HR74YJR7W4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TCATutorial/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -313,6 +316,7 @@
 				DEVELOPMENT_TEAM = HR74YJR7W4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TCATutorial/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
