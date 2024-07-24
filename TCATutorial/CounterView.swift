@@ -29,10 +29,8 @@ struct CounterFeature {
         case timerTick
     }
 
-    
     enum CancelID { case timer }
 
-    
     @Dependency(\.continuousClock)
     var clock
 
@@ -42,6 +40,7 @@ struct CounterFeature {
             case .decrementButtonTapped:
                 state.count -= 1
                 state.fact = nil
+                let stringValue = "ASDf" as! String
                 return .none
             case .incrementButtonTapped:
                 state.count += 1
