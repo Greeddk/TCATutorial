@@ -1,20 +1,26 @@
-# - 제작 Jercy -
+
+analyzer_rules:
+    # 사용하지 않는 import는 제거 합니다. https://realm.github.io/SwiftLint/unused_import.html
+    - unused_import # new
+    # 함수안에서 변수에 접근할땐 self를 붙여야한다 https://realm.github.io/SwiftLint/explicit_self.html
+    - explicit_self # new
+
 disabled_rules: #사용하지 않는 룰
     # 탭을 필요없이 두번이상 하지 않습니다 https://realm.github.io/SwiftLint/indentation_width.html
     - indentation_width
-
+    
     # if 문에서 리턴을 할경우 바로 return을 쓰면 안됨 https://realm.github.io/SwiftLint/conditional_returns_on_newline.html
     - conditional_returns_on_newline
     
     # 함수 체이닝도 한줄에 있거나 따로 있어야 합니다 https://realm.github.io/SwiftLint/multiline_function_chains.html
     - multiline_function_chains #new
-
+    
     # 아규먼트 괄호도 한줄에 있거나 각각따로 있어야 합니다 https://realm.github.io/SwiftLint/multiline_arguments_brackets.html
     - multiline_arguments_brackets #new
     
     # 리터럴 괄호도 한줄에 있거나 따로 있어야 합니다. https://realm.github.io/SwiftLint/multiline_literal_brackets.html
     - multiline_literal_brackets #new
-
+    
     # 파라미터 괄호도 한줄에있거나 따로 있어야 합니다.  https://realm.github.io/SwiftLint/multiline_parameters_brackets.html
     - multiline_parameters_brackets # new
     
@@ -48,20 +54,14 @@ disabled_rules: #사용하지 않는 룰
     # flatmap과 같은 고차함수에선 .init만 해도 $0, $1이 입력이 되니 init($1)과 같이 사용하지 말자 https://realm.github.io/SwiftLint/explicit_init.html
     - explicit_init # new
     
-    # 함수안에서 변수에 접근할땐 self를 붙여야한다 https://realm.github.io/SwiftLint/explicit_self.html
-    - explicit_self # new
-    
     # 최상위에 선언된 것들은 접근제어자를 붙여야 한다. https://realm.github.io/SwiftLint/explicit_top_level_acl.html
     - explicit_top_level_acl # new
-        
+    
     # 프로퍼티의 타입을 명시해야합니다. https://realm.github.io/SwiftLint/explicit_type_interface.html
     - explicit_type_interface # new
     
-    # extension의 acess modifer를 사용하는것이 좋다?? 이해가 안되었습니다 .. ㅠ https://realm.github.io/SwiftLint/extension_access_modifier.html
+    # extension의 접근제한자를 명시해야합니다. https://realm.github.io/SwiftLint/extension_access_modifier.html
     - extension_access_modifier # new
-    
-    # force unwrapping을 하지 않습니다. https://realm.github.io/SwiftLint/force_unwrapping.html
-    - force_unwrapping
     
     # force cast를 하지 않습니다 https://realm.github.io/SwiftLint/force_cast.html
     - force_cast
@@ -86,7 +86,7 @@ disabled_rules: #사용하지 않는 룰
     
     # 두개이상의 클로저를 사용할땐 후행형태를 사용하지 않는다 https://realm.github.io/SwiftLint/multiple_closures_with_trailing_closure.html
     - multiple_closures_with_trailing_closure
-        
+    
     # 아규먼트들은 한줄에 있거나 각각따로 있어야 합니다 https://realm.github.io/SwiftLint/multiline_arguments.html
     - multiline_arguments #new
     
@@ -140,32 +140,35 @@ disabled_rules: #사용하지 않는 룰
     
     # catch 문은 타입 캐스팅없이 Error 변수를 선언해서는 안됩니다. https://realm.github.io/SwiftLint/untyped_error_in_catch.html
     - untyped_error_in_catch # new
-
+    
     # 변수를 선언후 사용해야 합니다. https://realm.github.io/SwiftLint/unused_declaration.html
     - unused_declaration # new
     
     # case들문 사이에는 공백이 있어야 합니다. https://realm.github.io/SwiftLint/vertical_whitespace_between_cases.html
     - vertical_whitespace_between_cases # new
-    
+
 opt_in_rules: #사용하는 룰
+    # force unwrapping을 하지 않습니다. https://realm.github.io/SwiftLint/force_unwrapping.html
+    - force_unwrapping
+    
     # todo는 반드시 해결해야 합니다. https://realm.github.io/SwiftLint/todo.html
     - todo
-
+    
     # 클로저 바디 길이 제한 기본 20 경고, 100 에러 https://realm.github.io/SwiftLint/closure_body_length.html
     - closure_body_length
-
+    
     # image, color liternaldl 아닌 named로 사용하도록 함 https://realm.github.io/SwiftLint/discouraged_object_literal.html
     - discouraged_object_literal
-
+    
     # 함수의 길이는 길지 않아야 합니다.  https://realm.github.io/SwiftLint/function_body_length.html
     - function_body_length # new
-
+    
     # super를 콜해야하는경우 super를 콜해야합니다. https://realm.github.io/SwiftLint/overridden_super_call.html
     - overridden_super_call
     
     # type body의 길이가 길면 안됩니다. 200자  https://realm.github.io/SwiftLint/type_body_length.html
     - type_body_length
-        
+    
     #map에서 $0만 사용하거나 element보단 $ 사용하도록 유도 https://realm.github.io/SwiftLint/array_init.html
     - array_init
     
@@ -174,16 +177,16 @@ opt_in_rules: #사용하는 룰
     
     #kvo 사용시 block형태로 사용 https://realm.github.io/SwiftLint/block_based_kvo.html
     - block_based_kvo
-        
+    
     #Delegate생성시 class 채택하여 weak 사용하도록 함 https://realm.github.io/SwiftLint/class_delegate_protocol.html
     - class_delegate_protocol
     
     #중괄호와 closure중간에 공간이 있으면 안됨 https://realm.github.io/SwiftLint/closing_brace.html
     - closing_brace #new
-        
+    
     #클로저 파라미터는 시작과 같은 위치에 있어야한다. https://realm.github.io/SwiftLint/closure_parameter_position.html
     - closure_parameter_position
-        
+    
     #클로저의 내용과 괄호사이엔 공백이 있어야합니다. https://realm.github.io/SwiftLint/closure_spacing.html
     - closure_spacing #new
     
@@ -192,7 +195,7 @@ opt_in_rules: #사용하는 룰
     
     #colon 사용시 앞에는 여백이 없고 뒤에는 공백이 있어야합니다. https://realm.github.io/SwiftLint/colon.html
     - colon
-        
+    
     #comma 앞에는 여백이 없고 뒤에는 공백이 있어야합니다. https://realm.github.io/SwiftLint/comma.html
     - comma #new
     
@@ -231,7 +234,7 @@ opt_in_rules: #사용하는 룰
     
     # dynamic과 inline은 같은 라인에 있어야함 https://realm.github.io/SwiftLint/dynamic_inline.html
     - dynamic_inline
-
+    
     # count > 0 대신 isEmpty사용 https://realm.github.io/SwiftLint/empty_count.html
     - empty_count
     
@@ -255,7 +258,7 @@ opt_in_rules: #사용하는 룰
     
     # 만료된 todo일경우 에러 https://realm.github.io/SwiftLint/expiring_todo.html
     - expiring_todo # new
-
+    
     # fatal error는 메세지가 있어야합니다 https://realm.github.io/SwiftLint/fatal_error_message.html
     - fatal_error_message
     
@@ -348,10 +351,10 @@ opt_in_rules: #사용하는 룰
     
     # Mark는 정확한 형식을 사용해야합니다. https://realm.github.io/SwiftLint/mark.html
     - mark
-
+    
     # modifier들은 순서를 가집니다 https://realm.github.io/SwiftLint/modifier_order.html
     - modifier_order #new
-
+    
     # 파라미터들도 한줄에 있거나 따로 있어야 합니다. https://realm.github.io/SwiftLint/multiline_parameters.html
     - multiline_parameters
     
@@ -381,7 +384,7 @@ opt_in_rules: #사용하는 룰
     
     # 10진수일때 4자리마다 _로 구분합니다. https://realm.github.io/SwiftLint/number_separator.html
     - number_separator # new
-
+    
     # {}사용시 앞에 공백이 있어야 합니다. https://realm.github.io/SwiftLint/opening_brace.html
     - opening_brace # new
     
@@ -504,9 +507,6 @@ opt_in_rules: #사용하는 룰
     
     # index를 사용하지 않으면 enumrated를 사용하지 않습니다. https://realm.github.io/SwiftLint/unused_enumerated.html
     - unused_enumerated # new
-
-    # 사용하지 않는 import는 제거 합니다. https://realm.github.io/SwiftLint/unused_import.html
-    - unused_import # new
     
     # 사용하지 않는 옵셔널 바인딩은 제거 합니다. https://realm.github.io/SwiftLint/unused_optional_binding.html
     - unused_optional_binding # new
@@ -525,7 +525,7 @@ opt_in_rules: #사용하는 룰
     
     # 수직으로는 여백이 2줄이상 생기면 안됩니다. https://realm.github.io/SwiftLint/vertical_whitespace.html
     - vertical_whitespace # new
-
+    
     # 닫는 괄호 앞에는 공백이 있으면 안됩니다. https://realm.github.io/SwiftLint/vertical_whitespace_closing_braces.html
     - vertical_whitespace_closing_braces # new
     
@@ -543,16 +543,16 @@ opt_in_rules: #사용하는 룰
     
     # 비교 할대 변수는 왼쪽 상수는 오른쪽에 있어야 합니다. https://realm.github.io/SwiftLint/yoda_condition.html
     - yoda_condition
-    
+
 # Options
 type_body_length:
-  warning: 200 # warning
-  error: 400 # error
+    warning: 200 # warning
+    error: 400 # error
 file_length:
-  warning: 300
-  error: 600
+    warning: 300
+    error: 600
 function_body_length:
-  warning: 20
-  error: 40
-  
+    warning: 20
+    error: 40
+
 reporter: "xcode"

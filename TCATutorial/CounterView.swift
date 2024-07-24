@@ -33,8 +33,9 @@ struct CounterFeature {
 
     @Dependency(\.continuousClock)
     var clock
-    // TODO: test
+
     var body: some ReducerOf<Self> {
+        
         Reduce { state, action in
             switch action {
             case .decrementButtonTapped:
@@ -50,8 +51,11 @@ struct CounterFeature {
                 state.isLoading = true
 
                 return .run { [count = state.count] send in
+                    guard let url = URL(string: "http://numbersapi.com/\(count)") else {
+                        return
+                    }
                     let (data, _) = try await URLSession.shared
-                        .data(from: URL(string: "http://numbersapi.com/\(count)")!)
+                        .data(from: url)
                     let fact = String(decoding: data, as: UTF8.self)
                     await send(.factResponse(fact))
                 }
