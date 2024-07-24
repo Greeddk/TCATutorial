@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  CounterView.swift
 //  TCATutorial
 //
 //  Created by Greed on 7/23/24.
@@ -8,16 +8,18 @@
 import ComposableArchitecture
 import SwiftUI
 
+// MARK: - CounterFeature
+
 @Reducer
 struct CounterFeature {
     @ObservableState
-    struct State {
+    struct State: Equatable {
         var count = 0
         var fact: String?
         var isLoading = false
         var isTimerRunning = false
     }
-    
+
     enum Action {
         case decrementButtonTapped
         case incrementButtonTapped
@@ -26,9 +28,12 @@ struct CounterFeature {
         case toggleTimerButtonTapped
         case timerTick
     }
-    
+
     enum CancelID { case timer }
-    
+
+    @Dependency(\.continuousClock)
+    var clock
+    // TODO: test
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
@@ -43,7 +48,7 @@ struct CounterFeature {
             case .factButtonTapped:
                 state.fact = nil
                 state.isLoading = true
-                
+
                 return .run { [count = state.count] send in
                     let (data, _) = try await URLSession.shared
                         .data(from: URL(string: "http://numbersapi.com/\(count)")!)
@@ -62,8 +67,7 @@ struct CounterFeature {
                 state.isTimerRunning.toggle()
                 if state.isTimerRunning {
                     return .run { send in
-                        while true {
-                            try await Task.sleep(for: .seconds(1))
+                        for await _ in self.clock.timer(interval: .seconds(1)) {
                             await send(.timerTick)
                         }
                     }
@@ -76,10 +80,11 @@ struct CounterFeature {
     }
 }
 
+// MARK: - CounterView
+
 struct CounterView: View {
-    
     let store: StoreOf<CounterFeature>
-    
+
     var body: some View {
         VStack {
             Text("\(store.count)")
@@ -95,7 +100,7 @@ struct CounterView: View {
                 .padding()
                 .background(Color.black.opacity(0.1))
                 .cornerRadius(10)
-                
+
                 Button("+") {
                     store.send(.incrementButtonTapped)
                 }
@@ -118,7 +123,7 @@ struct CounterView: View {
             .padding()
             .background(Color.black.opacity(0.1))
             .cornerRadius(10)
-            
+
             if store.isLoading {
                 ProgressView()
             } else if let fact = store.fact {
