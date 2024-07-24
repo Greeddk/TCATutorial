@@ -29,13 +29,14 @@ struct CounterFeature {
         case timerTick
     }
 
+    
     enum CancelID { case timer }
 
+    
     @Dependency(\.continuousClock)
     var clock
 
     var body: some ReducerOf<Self> {
-        
         Reduce { state, action in
             switch action {
             case .decrementButtonTapped:
