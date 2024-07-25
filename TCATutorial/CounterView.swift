@@ -33,6 +33,7 @@ struct CounterFeature {
 
     @Dependency(\.continuousClock)
     var clock
+    var test: String?
 
     var body: some ReducerOf<Self> {
         Reduce { state, action in
