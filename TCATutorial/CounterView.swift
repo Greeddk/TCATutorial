@@ -33,7 +33,7 @@ struct CounterFeature {
 
     @Dependency(\.continuousClock)
     var clock
-    var test: String?
+    var test: String! = "test"
 
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -41,7 +41,6 @@ struct CounterFeature {
             case .decrementButtonTapped:
                 state.count -= 1
                 state.fact = nil
-                let stringValue = "ASDf" as! String
                 return .none
             case .incrementButtonTapped:
                 state.count += 1
