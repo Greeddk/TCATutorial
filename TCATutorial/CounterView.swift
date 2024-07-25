@@ -35,7 +35,6 @@ struct CounterFeature {
     var clock
 
     var body: some ReducerOf<Self> {
-        
         Reduce { state, action in
             switch action {
             case .decrementButtonTapped:

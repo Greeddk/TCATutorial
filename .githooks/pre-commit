@@ -29,7 +29,7 @@ elif [ -z "$targets" ]; then
 fi
 
 # lint rule 정의 파일
-RESULT=$($LINT lint --quiet --config .swiftlint.yml --strict)
+RESULT=$($LINT lint --quiet --strict --config .precommitlint.yml)
 
 if [ "$RESULT" == '' ]; then
     printf "✨ Completed applying SwiftLint!! Good Job:)\n"

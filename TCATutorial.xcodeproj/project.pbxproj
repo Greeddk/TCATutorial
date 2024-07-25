@@ -232,7 +232,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then \n    if [ \"$CONFIGURATION\" ]; then\n        PROJECT_PATH=\"$\"\n        HOOKS_PATH=$(git config --get core.hooksPath)\n        if [ \"$PROJECT_PATH/.githooks\" != \"$HOOKS_PATH\" ]; then\n            git config core.hooksPath $PROJECT_PATH/.githooks\n        fi\n    fi\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then \n    if [ -n \"$CONFIGURATION\" ]; then\n        PROJECT_PATH=\"/Desktop/Projects/TCATutorial\"\n        HOOKS_PATH=$(git config --get core.hooksPath)\n        if [ \"$PROJECT_PATH/.githooks\" != \"$HOOKS_PATH\" ]; then\n            git config core.hooksPath $PROJECT_PATH/.githooks\n        fi\n    fi\n    if [ $? -ne 0 ]; then\n        echo \"SwiftLint found issues. Please fix them before committing.\"\n        exit 1\n    fi\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		06B989452C50CFD5002532B6 /* SwiftFormat */ = {
 			isa = PBXShellScriptBuildPhase;
